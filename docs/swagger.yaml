@@ -1,0 +1,135 @@
+swagger: "2.0"
+
+info:
+  version: "1.0.0"
+  title: "Bonus Objective"
+  contact:
+    email: "emil@rainbowbrains.pl"
+  license:
+    name: "MIT"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+host: "premia.dev.empressia.pl"
+basePath: "/api"
+
+schemes:
+  - "https"
+
+paths:
+  /:
+    get:
+      summary: "Get Summary"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Summary"
+          schema:
+            $ref: "#/definitions/Summary"
+
+  /objective:
+    get:
+      summary: "Get Objective"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Objective"
+          schema:
+            $ref: "#/definitions/Objective"
+
+    put:
+      summary: "Update Objective"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Objective object"
+          required: true
+          schema:
+            $ref: "#/definitions/Objective"
+      security:
+        - basicAuth: []
+      responses:
+        "200":
+          description: "Objective"
+          schema:
+            $ref: "#/definitions/Objective"
+
+  /profit:
+    get:
+      summary: "Get Profit"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Profit"
+          schema:
+            $ref: "#/definitions/Profit"
+
+    put:
+      summary: "Update Profit"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Profit object"
+          required: true
+          schema:
+            $ref: "#/definitions/Profit"
+      security:
+        - basicAuth: []
+      responses:
+        "200":
+          description: "Profit"
+          schema:
+            $ref: "#/definitions/Profit"
+
+  /progress:
+    get:
+      summary: "Get Progress"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Progress"
+          schema:
+            $ref: "#/definitions/Progress"
+
+definitions:
+  Objective:
+    type: "object"
+    properties:
+      objective:
+        type: "integer"
+        example: 150000
+  Profit:
+    type: "object"
+    properties:
+      profit:
+        type: "integer"
+        example: 50000
+  Progress:
+    type: "object"
+    properties:
+      progress:
+        type: "number"
+        format: "float"
+        example: 0.33
+  Summary:
+    type: "object"
+    allOf:
+      - $ref: "#/definitions/Objective"
+      - $ref: "#/definitions/Profit"
+      - $ref: "#/definitions/Progress"
+
+securityDefinitions:
+  basicAuth:
+    type: basic
+
