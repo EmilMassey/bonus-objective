@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    div(class="container")
+        h1 Próg premiowy - administrator
+
+        if error
+            div(class="alert alert-danger") #{error}
+        else if success
+            div(class="alert alert-success") Zapisano!
+
+        form(method="POST" action="/admin")
+            div(class="form-group row")
+                label(for="profit" class="col-form-label") Aktualny zysk
+                div(class="input-group")
+                    input(id="profit" name="profit" type="number" class="form-control" required=true value=profit)
+                    div(class="input-group-append")
+                        div(class="input-group-text") zł
+            div(class="form-group row")
+                label(for="objective" class="col-form-label") Próg premiowy
+                div(class="input-group")
+                    input(id="objective" name="objective" type="number" class="form-control" required=true value=objective)
+                    div(class="input-group-append")
+                        div(class="input-group-text") zł
+
+            button(class="btn btn-primary") Zapisz

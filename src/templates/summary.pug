@@ -1,0 +1,6 @@
+extends layout
+
+block content
+    h1 Próg premiowy
+    p #{profit}zł / #{objective}zł (#{(progress * 100).toFixed(2)}%)
+    progress(value=profit max=objective)
