@@ -4,6 +4,7 @@ const DataManager = require('./DataManager')
 const { ValidationError } = require('joi')
 const Joi = require('joi')
 const pug = require('pug')
+const cors = require('cors')
 const basicAuth = require('express-basic-auth')
 const bcrypt = require('bcrypt')
 
@@ -34,6 +35,7 @@ app.get('/', async (req, res) => {
   res.send(pug.renderFile('./templates/summary.pug', await getSummary()))
 })
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
