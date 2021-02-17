@@ -1,7 +1,7 @@
 const fs = require('fs')
 const NotFoundError = require('./error/NotFoundError')
 
-const DATA_DIRECTORY = '../data'
+const DATA_DIRECTORY = `${__dirname}/../data`
 
 class DataManager {
   /**

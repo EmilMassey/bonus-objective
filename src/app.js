@@ -32,7 +32,7 @@ const authorizer = async (username, password, callback) => {
 }
 
 app.get('/', async (req, res) => {
-  res.send(pug.renderFile('./templates/summary.pug', await getSummary()))
+  res.send(pug.renderFile(`${__dirname}/templates/summary.pug`, await getSummary()))
 })
 
 app.use(cors())
@@ -113,7 +113,7 @@ app.put('/api/profit', async function (req, res, next) {
 })
 
 app.get('/admin', async (req, res) => {
-  res.send(pug.renderFile('./templates/admin-form.pug', await getSummary()))
+  res.send(pug.renderFile(`${__dirname}/templates/admin-form.pug`, await getSummary()))
 })
 
 app.post('/admin', async (req, res) => {
@@ -127,7 +127,7 @@ app.post('/admin', async (req, res) => {
   } catch (e) {
     res.status = 400
     res.send(
-      pug.renderFile('./templates/admin-form.pug', {
+      pug.renderFile(`${__dirname}/templates/admin-form.pug`, {
         ...(await getSummary()),
         error: e.message,
       }),
@@ -140,7 +140,7 @@ app.post('/admin', async (req, res) => {
   await dataManager.update('objective', data.objective)
 
   res.send(
-    pug.renderFile('./templates/admin-form.pug', {
+    pug.renderFile(`${__dirname}/templates/admin-form.pug`, {
       profit: data.profit,
       objective: data.objective,
       success: true,
